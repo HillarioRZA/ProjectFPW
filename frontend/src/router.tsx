@@ -1,4 +1,4 @@
-import { createBrowserRouter } from 'react-router-dom';
+import { createBrowserRouter, Navigate } from 'react-router-dom';
 import Login from './pages/Login';
 import Register from './pages/Register';
 import Dashboard from './pages/Dashboard';
@@ -13,63 +13,127 @@ import ManageTopics from './pages/admin/ManageTopics';
 import ManageUsers from './pages/admin/ManageUsers';
 import ManageComments from './pages/admin/ManageComments';
 import NotFound from './pages/NotFound';
+import { RouteGuard } from './middleware/RouteGuard';
+import PublicRoute from './middleware/PublicRoute';
+import Topic from './pages/MyTopic';
+import MyTopic from './pages/MyTopic';
 
 const router = createBrowserRouter([
   {
     path: '/',
-    element: <Login />,
+    element: <Navigate to="/login" replace />,
   },
   {
     path: '/login',
-    element: <Login />,
+    element: <PublicRoute><Login /></PublicRoute>,
   },
   {
     path: '/register',
-    element: <Register />,
+    element: <PublicRoute><Register /></PublicRoute>,
   },
   {
     path: '/dashboard',
-    element: <Dashboard />,
+    element: (
+      <RouteGuard requiredRole="user">
+        <Dashboard />
+      </RouteGuard>
+    ),
   },
   {
-    path: '/category/:slug',
-    element: <Category />,
+    path: '/category',
+    element: (
+      <RouteGuard requiredRole="user">
+        <Category />
+      </RouteGuard>
+    ),
   },
   {
-    path: '/topic/:id',
-    element: <TopicDetail />,
+    path: '/topics/:topicId',
+    element: (
+      <RouteGuard requiredRole="user">
+        <TopicDetail />
+      </RouteGuard>
+    ),
+  },
+  {
+    path: '/topics',
+    element: (
+      <RouteGuard requiredRole="user">
+        <Topic />
+      </RouteGuard>
+    )
   },
   {
     path: '/create-topic',
-    element: <CreateTopic />,
+    element: (
+      <RouteGuard requiredRole="user">
+        <CreateTopic />
+      </RouteGuard>
+    ),
   },
   {
-    path: '/edit-topic/:id',
-    element: <EditTopic />,
+    path: '/edit-topic/:topicId',
+    element: (
+      <RouteGuard requiredRole="user">
+        <EditTopic />
+      </RouteGuard>
+    ),
   },
   {
     path: '/profile',
-    element: <Profile />,
+    element: (
+      <RouteGuard requiredRole="user">
+        <Profile />
+      </RouteGuard>
+    ),
   },
   {
-    path: '/admin/dashboard',
-    element: <AdminDashboard />,
+    path: '/admin/AdminDashboard',
+    element: (
+      <RouteGuard requiredRole="admin">
+        <AdminDashboard />
+      </RouteGuard>
+    ),
   },
   {
     path: '/admin/categories',
-    element: <ManageCategories />,
+    element: (
+      <RouteGuard requiredRole="admin">
+        <ManageCategories />
+      </RouteGuard>
+    ),
   },
   {
     path: '/admin/topics',
-    element: <ManageTopics />,
+    element: (
+      <RouteGuard requiredRole="admin">
+        <ManageTopics />
+      </RouteGuard>
+    ),
   },
   {
     path: '/admin/users',
-    element: <ManageUsers />,
+    element: (
+      <RouteGuard requiredRole="admin">
+        <ManageUsers />
+      </RouteGuard>
+    ),
   },
   {
     path: '/admin/comments',
-    element: <ManageComments />,
+    element: (
+      <RouteGuard requiredRole="admin">
+        <ManageComments />
+      </RouteGuard>
+    ),
+  },
+  {
+    path: '/my-topics',
+    element: (
+      <RouteGuard requiredRole="user">
+        <MyTopic />
+      </RouteGuard>
+    )
   },
   {
     path: '*',

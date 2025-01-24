@@ -25,6 +25,10 @@ const topicSchema = new mongoose.Schema({
     type: Number,
     default: 0, // Default view count adalah 0
   },
+  commentCount: {
+    type: Number,
+    default: 0,
+  },
   isDeleted: {
     type: Boolean,
     default: false, // Default topic tidak dihapus
@@ -44,12 +48,21 @@ const topicSchema = new mongoose.Schema({
       message: 'You can add up to 3 tags only',
     },
   },
+}, {
+  timestamps: true // Ini akan menambahkan createdAt dan updatedAt secara otomatis
 });
 
-// Middleware untuk mengupdate `updatedAt` saat data diubah
-topicSchema.pre('save', function (next) {
-  this.updatedAt = Date.now();
-  next();
-});
+// Method untuk update comment count
+topicSchema.methods.updateCommentCount = async function() {
+  const Comment = require('./Comment');
+  const count = await Comment.countDocuments({ 
+    topicId: this._id,
+    isDeleted: false 
+  });
+  this.commentCount = count;
+  await this.save();
+};
 
 module.exports = mongoose.model('Topic', topicSchema);
+
+// Middleware untuk mengupdate `updatedAt`

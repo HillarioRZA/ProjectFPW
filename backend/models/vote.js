@@ -18,7 +18,7 @@ const voteSchema = new mongoose.Schema({
   },
   value: {
     type: Number,
-    enum: [1, -1], // 1 untuk upvote, -1 untuk downvote
+    enum: [1, 0,-1], // 1 untuk upvote, -1 untuk downvote
     required: true,
   },
   createdAt: {

@@ -21,12 +21,16 @@ const userSchema = new mongoose.Schema({
   },
   avatarUrl: {
     type: String, // URL untuk gambar avatar
-    default: 'https://via.placeholder.com/150',
+    default: '/default-avatar.png',
   },
   role: {
     type: String,
     enum: ['admin', 'user'], // Role bisa admin atau user
     default: 'user',
+  },
+  bio: {
+    type: String,
+    default: '',
   },
   createdAt: {
     type: Date,
@@ -44,6 +48,22 @@ const userSchema = new mongoose.Schema({
     type: String,
     unique: true, // Unik jika menggunakan login GitHub
   },
+  banStatus: {
+    isBanned: {
+      type: Boolean,
+      default: false
+    },
+    banExpires: {
+      type: Date,
+      default: null
+    },
+    banReason: {
+      type: String,
+      default: null
+    }
+  }
+}, {
+  timestamps: true
 });
 
 // Menambahkan hash password sebelum disimpan ke DB
@@ -57,6 +77,28 @@ userSchema.pre('save', async function (next) {
 // Membuat method untuk membandingkan password
 userSchema.methods.matchPassword = async function (enteredPassword) {
   return await bcrypt.compare(enteredPassword, this.password);
+};
+
+// Add method to check if user is banned
+userSchema.methods.isBanned = function() {
+  if (!this.banStatus.isBanned) return false;
+  if (!this.banStatus.banExpires) return true; // permanent ban
+  return new Date() < this.banStatus.banExpires;
+};
+
+// Add method to format ban message
+userSchema.methods.formatBanMessage = function() {
+  if (!this.banStatus.isBanned) return null;
+  
+  if (!this.banStatus.banExpires) {
+    return `Your account has been permanently banned. Reason: ${this.banStatus.banReason}`;
+  }
+
+  const now = new Date();
+  const banEnd = new Date(this.banStatus.banExpires);
+  const daysLeft = Math.ceil((banEnd - now) / (1000 * 60 * 60 * 24));
+  
+  return `Your account is banned for ${daysLeft} more day${daysLeft > 1 ? 's' : ''}. Ban expires on ${banEnd.toLocaleString()}. Reason: ${this.banStatus.banReason}`;
 };
 
 module.exports = mongoose.model('User', userSchema);

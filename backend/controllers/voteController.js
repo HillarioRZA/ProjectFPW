@@ -1,4 +1,4 @@
-const Vote = require('../models/vote');
+const Vote = require('../models/Vote');
 
 // Create Vote
 const createVote = async (req, res, io) => {
@@ -9,38 +9,68 @@ const createVote = async (req, res, io) => {
     const existingVote = await Vote.findOne({ userId, referenceId, referenceType });
 
     if (existingVote) {
-      // Jika sudah ada, perbarui nilai vote
-      existingVote.value = value;
-      await existingVote.save();
+      if (existingVote.value === value) {
+        // Jika vote sama, hapus vote (unvote)
+        await Vote.findByIdAndDelete(existingVote._id);
+        
+        // Emit event untuk vote dihapus
+        io.emit('voteUpdated', {
+          referenceId,
+          referenceType,
+          action: 'delete'
+        });
 
-      // Emit notifikasi real-time
-      io.emit('voteUpdated', {
-        voteId: existingVote._id,
-        userId: existingVote.userId,
-        referenceId: existingVote.referenceId,
-        referenceType: existingVote.referenceType,
-        value: existingVote.value,
-      });
+        return res.status(200).json({ 
+          message: 'Vote removed successfully',
+          action: 'delete',
+          vote: null
+        });
+      } else {
+        // Update nilai vote jika berbeda
+        existingVote.value = value;
+        await existingVote.save();
 
-      return res.status(200).json({ message: 'Vote updated successfully', vote: existingVote });
+        // Emit event untuk vote diupdate
+        io.emit('voteUpdated', {
+          voteId: existingVote._id,
+          referenceId,
+          referenceType,
+          value: existingVote.value,
+          action: 'update'
+        });
+
+        return res.status(200).json({ 
+          message: 'Vote updated successfully', 
+          vote: existingVote,
+          action: 'update'
+        });
+      }
     }
 
-    // Jika belum ada, buat vote baru
+    // Buat vote baru
     const vote = new Vote({ userId, referenceId, referenceType, value });
     await vote.save();
 
-    // Emit notifikasi real-time
-    io.emit('newVote', {
+    // Emit event untuk vote baru
+    io.emit('voteUpdated', {
       voteId: vote._id,
-      userId: vote.userId,
-      referenceId: vote.referenceId,
-      referenceType: vote.referenceType,
+      referenceId,
+      referenceType,
       value: vote.value,
+      action: 'create'
     });
 
-    res.status(201).json({ message: 'Vote created successfully', vote });
+    res.status(201).json({ 
+      message: 'Vote created successfully', 
+      vote,
+      action: 'create'
+    });
   } catch (error) {
-    res.status(500).json({ message: 'Server error', error: error.message });
+    res.status(500).json({ 
+      message: 'Server error', 
+      error: error.message,
+      vote: null
+    });
   }
 };
 

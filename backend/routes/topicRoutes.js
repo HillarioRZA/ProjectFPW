@@ -1,19 +1,25 @@
 const express = require('express');
+const router = express.Router();
+const { protect } = require('../middleware/authMiddleware');
 const {
   createTopic,
   getAllTopics,
   getTopicById,
   updateTopic,
   deleteTopic,
+  restoreTopic,
+  getLatestTopics
 } = require('../controllers/topicController');
 
-const router = express.Router();
+// Public routes
+router.get('/latest', getLatestTopics); // Remove protect middleware if public
 
-// Routes untuk Topic
-router.post('/', createTopic); // Buat topik baru
-router.get('/', getAllTopics); // Ambil semua topik
-router.get('/:topicId', getTopicById); // Ambil topik berdasarkan ID
-router.put('/:topicId', updateTopic); // Update topik
-router.delete('/:topicId', deleteTopic); // Hapus (soft delete) topik
+// Protected routes
+router.post('/', protect, createTopic);
+router.get('/', protect, getAllTopics);
+router.get('/:topicId', protect, getTopicById);
+router.put('/:topicId', protect, updateTopic);
+router.patch('/:id/delete', protect, deleteTopic);
+router.patch('/:id/restore', protect, restoreTopic);
 
 module.exports = router;
