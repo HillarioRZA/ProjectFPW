@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 
-const Navbar: React.FC = () => {
+export default function Navbar() {
   const location = useLocation();
 
   //Hide navbar on login or register page
@@ -34,5 +34,3 @@ const Navbar: React.FC = () => {
     </nav>
   );
 };
-
-export default Navbar;
