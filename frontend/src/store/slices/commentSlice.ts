@@ -1,4 +1,4 @@
-import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import { createSlice, createAsyncThunk,PayloadAction  } from '@reduxjs/toolkit';
 import axios from 'axios';
 
 interface Comment {
@@ -132,7 +132,27 @@ const commentSlice = createSlice({
   reducers: {
     clearError: (state) => {
       state.error = null;
-    }
+    },
+    addCommentRealTime: (state, action: PayloadAction<Comment>) => {
+      // Cek apakah komentar sudah ada di state
+      const existingComment = state.comments.find((comment) => comment._id === action.payload._id);
+      if (!existingComment) {
+        state.comments.unshift(action.payload); // Tambahkan komentar baru ke awal array
+      }
+    },
+    updateCommentRealTime: (state, action: PayloadAction<Comment>) => {
+      const index = state.comments.findIndex(
+        (comment) => comment._id === action.payload._id
+      );
+      if (index !== -1) {
+        state.comments[index] = action.payload; // Update komentar yang ada
+      }
+    },
+    deleteCommentRealTime: (state, action: PayloadAction<string>) => {
+      state.comments = state.comments.filter(
+        (comment) => comment._id !== action.payload // Hapus komentar berdasarkan ID
+      );
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -228,5 +248,7 @@ const commentSlice = createSlice({
   }
 });
 
-export const { clearError } = commentSlice.actions;
+export const { clearError,addCommentRealTime,
+  updateCommentRealTime,
+  deleteCommentRealTime,} = commentSlice.actions;
 export default commentSlice.reducer; 

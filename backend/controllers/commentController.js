@@ -10,23 +10,28 @@ const setSocketIO = (socketIO) => {
   io = socketIO;
 };
 
+
+
+// Create Comment
+// Create Comment
 // Create Comment
 const createComment = async (req, res) => {
   try {
-    const { content, topicId } = req.body;
+    const { content, topicId, replyTo } = req.body;
     const userId = req.user.id;
 
     const comment = new Comment({
       content,
       userId,
       topicId,
+      replyTo,
     });
 
     const savedComment = await comment.save();
     const populatedComment = await Comment.findById(savedComment._id)
       .populate('userId', 'username avatarUrl');
 
-    // Emit to all clients in the topic room
+    // Emit event ke semua client di room topic
     io.to(`topic_${topicId}`).emit('commentAdded', populatedComment);
 
     res.status(201).json(populatedComment);
@@ -144,7 +149,7 @@ const deleteComment = async (req, res) => {
     await comment.save();
 
     // Emit deleted comment
-    io.to(`topic_${comment.topicId}`).emit('commentDeleted', comment);
+    io.to(`topic_${comment.topicId}`).emit('commentDeleted', { id: comment._id, topicId: comment.topicId });
 
     res.json({ message: 'Comment deleted successfully' });
   } catch (error) {

@@ -15,22 +15,22 @@ export default function CommentForm({ topicId }: CommentFormProps) {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setError('');
-
-    if (!content.trim()) {
-      setError('Comment cannot be empty');
-      return;
-    }
-
+    if (!newComment.trim()) return;
+  
     try {
-      await dispatch(createComment({ 
-        content: content.trim(),
-        topicId 
-      })).unwrap();
-      setContent('');
+      const commentData = {
+        userId: currentUser.id,
+        topicId: topicId,
+        content: newComment.trim(),
+        replyTo: replyTo // Kirim ID komentar yang di-reply
+      };
+  
+      await dispatch(createComment(commentData)).unwrap();
+      setNewComment('');
+      setReplyTo(null);
+      setReplyingToUsername('');
     } catch (error) {
-      setError('Failed to post comment');
-      console.error('Comment error:', error);
+      console.error('Failed to post comment:', error);
     }
   };
 

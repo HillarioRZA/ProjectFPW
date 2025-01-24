@@ -58,7 +58,7 @@ export default function TopicDetail() {
   );
 
   const handleEdit = () => {
-    setIsEditing(true);
+    navigate(`/edit-topic/${topicId}`);
   };
 
   const handleDelete = async () => {

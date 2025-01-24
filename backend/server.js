@@ -63,34 +63,40 @@ io.on('connection', (socket) => {
   console.log('User connected:', socket.id);
 
   // Handle joining topic room
-  socket.on('joinTopic', (topicId) => {
+  socket.on('joinTopic', (topicId, callback) => {
+    console.log(`Received joinTopic event with topicId: ${topicId}`);
     socket.join(`topic_${topicId}`);
-    console.log(`User ${socket.id} joined topic ${topicId}`);
+    console.log(`User ${socket.id} joined topic room: topic_${topicId}`);
+    if (callback) callback();
   });
 
   // Handle leaving topic room
   socket.on('leaveTopic', (topicId) => {
+    console.log(`User ${socket.id} left topic room: topic_${topicId}`);
     socket.leave(`topic_${topicId}`);
-    console.log(`User ${socket.id} left topic ${topicId}`);
   });
 
   // Handle new comment
   socket.on('newComment', (data) => {
+    console.log(`Broadcasting new comment to room topic_${data.topicId}`);
     socket.to(`topic_${data.topicId}`).emit('commentAdded', data);
   });
 
   // Handle comment update
   socket.on('updateComment', (data) => {
+    console.log(`Broadcasting updated comment to room topic_${data.topicId}`);
     socket.to(`topic_${data.topicId}`).emit('commentUpdated', data);
   });
 
   // Handle comment delete
   socket.on('deleteComment', (data) => {
+    console.log(`Broadcasting deleted comment to room topic_${data.topicId}`);
     socket.to(`topic_${data.topicId}`).emit('commentDeleted', data);
   });
 
   // Handle vote update
   socket.on('voteUpdate', (data) => {
+    console.log(`Broadcasting vote update to room topic_${data.topicId}`);
     socket.to(`topic_${data.topicId}`).emit('voteUpdated', data);
   });
 

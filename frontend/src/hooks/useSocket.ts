@@ -1,69 +1,51 @@
 import { useEffect, useRef, useCallback } from 'react';
 import io, { Socket } from 'socket.io-client';
-
-interface Comment {
-  _id: string;
-  content: string;
-  userId: {
-    _id: string;
-    username: string;
-    avatarUrl: string;
-  };
-  topicId: string;
-  createdAt: string;
-  updatedAt: string;
-  isDeleted: boolean;
-  isEdited: boolean;
-}
+import { useDispatch } from 'react-redux';
+import { addCommentRealTime, updateCommentRealTime, deleteCommentRealTime } from '../store/slices/commentSlice';
 
 interface UseSocketProps {
   topicId: string;
-  onCommentAdded?: (comment: Comment) => void;
-  onCommentUpdated?: (comment: Comment) => void;
-  onCommentDeleted?: (comment: Comment) => void;
-  onVoteUpdated?: (data: any) => void;
 }
 
-export const useSocket = ({
-  topicId,
-  onCommentAdded,
-  onCommentUpdated,
-  onCommentDeleted,
-  onVoteUpdated
-}: UseSocketProps) => {
+export const useSocket = ({ topicId }: UseSocketProps) => {
   const socket = useRef<Socket>();
+  const dispatch = useDispatch();
 
   const connect = useCallback(() => {
-    socket.current = io('http://localhost:5000', {
-      withCredentials: true
-    });
+    if (!socket.current) {
+      socket.current = io('http://localhost:5000', {
+        withCredentials: true,
+        cors: {
+          origin: "http://localhost:5173",
+          methods: ["GET", "POST"]
+        }
+      });
 
-    // Set up event listeners
-    if (socket.current) {
-      if (onCommentAdded) {
-        socket.current.on('commentAdded', onCommentAdded);
-      }
-      if (onCommentUpdated) {
-        socket.current.on('commentUpdated', onCommentUpdated);
-      }
-      if (onCommentDeleted) {
-        socket.current.on('commentDeleted', onCommentDeleted);
-      }
-      if (onVoteUpdated) {
-        socket.current.on('voteUpdated', onVoteUpdated);
-      }
+      // Set up event listeners
+      socket.current.on('commentAdded', (data: Comment) => {
+        dispatch(addCommentRealTime(data)); // Tambahkan komentar baru ke state Redux
+      });
+
+      socket.current.on('commentUpdated', (data: Comment) => {
+        dispatch(updateCommentRealTime(data)); // Update komentar di state Redux
+      });
+
+      socket.current.on('commentDeleted', (data: { id: string }) => {
+        dispatch(deleteCommentRealTime(data.id)); // Hapus komentar dari state Redux
+      });
 
       // Join topic room
       socket.current.emit('joinTopic', topicId);
     }
-  }, [topicId, onCommentAdded, onCommentUpdated, onCommentDeleted, onVoteUpdated]);
+  }, [topicId, dispatch]);
 
   const disconnect = useCallback(() => {
     if (socket.current) {
       socket.current.emit('leaveTopic', topicId);
       socket.current.disconnect();
+      socket.current = undefined; // Reset socket instance
     }
-  }, [topicId]);
+  }, [topicId,dispatch]);
 
   useEffect(() => {
     connect();
@@ -73,4 +55,4 @@ export const useSocket = ({
   }, [connect, disconnect]);
 
   return socket.current;
-}; 
+};
