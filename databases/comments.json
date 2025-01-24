@@ -1,0 +1,52 @@
+[
+  {
+    "_id": { "$oid": "6571283a1f0c4b001f3c1249" },
+    "userId": { "$oid": "6571283a1f0c4b001f3c1236" },
+    "topicId": { "$oid": "6571283a1f0c4b001f3c1244" },
+    "content": "I've found useCallback and useMemo to be essential for performance optimization.",
+    "replyTo": null,
+    "isDeleted": false,
+    "createdAt": { "$date": "2024-01-22T00:00:00Z" },
+    "updatedAt": { "$date": "2024-01-22T00:00:00Z" }
+  },
+  {
+    "_id": { "$oid": "6571283a1f0c4b001f3c1250" },
+    "userId": { "$oid": "6571283a1f0c4b001f3c1237" },
+    "topicId": { "$oid": "6571283a1f0c4b001f3c1244" },
+    "content": "Custom hooks have really helped me organize my code better.",
+    "replyTo": { "$oid": "6571283a1f0c4b001f3c1249" },
+    "isDeleted": false,
+    "createdAt": { "$date": "2024-01-22T00:00:00Z" },
+    "updatedAt": { "$date": "2024-01-22T00:00:00Z" }
+  },
+  {
+    "_id": { "$oid": "6571283a1f0c4b001f3c1251" },
+    "userId": { "$oid": "6571283a1f0c4b001f3c1238" },
+    "topicId": { "$oid": "6571283a1f0c4b001f3c1245" },
+    "content": "Python's Django is more batteries-included compared to Node.js",
+    "replyTo": null,
+    "isDeleted": false,
+    "createdAt": { "$date": "2024-01-22T00:00:00Z" },
+    "updatedAt": { "$date": "2024-01-22T00:00:00Z" }
+  },
+  {
+    "_id": { "$oid": "6571283a1f0c4b001f3c1252" },
+    "userId": { "$oid": "6571283a1f0c4b001f3c1235" },
+    "topicId": { "$oid": "6571283a1f0c4b001f3c1246" },
+    "content": "CSS Grid has revolutionized layout design!",
+    "replyTo": null,
+    "isDeleted": false,
+    "createdAt": { "$date": "2024-01-22T00:00:00Z" },
+    "updatedAt": { "$date": "2024-01-22T00:00:00Z" }
+  },
+  {
+    "_id": { "$oid": "6571283a1f0c4b001f3c1253" },
+    "userId": { "$oid": "6571283a1f0c4b001f3c1236" },
+    "topicId": { "$oid": "6571283a1f0c4b001f3c1247" },
+    "content": "Kubernetes is overkill for small projects, Docker Compose is enough",
+    "replyTo": { "$oid": "6571283a1f0c4b001f3c1251" },
+    "isDeleted": false,
+    "createdAt": { "$date": "2024-01-22T00:00:00Z" },
+    "updatedAt": { "$date": "2024-01-22T00:00:00Z" }
+  }
+]

@@ -1,0 +1,62 @@
+[
+{
+    "_id": {"$oid": "6571283a1f0c4b001f3c1234"},
+    "email": "admin@devforum.com",
+    "username": "admin",
+    "password": "$2a$10$XQXxo1kM5KiFr",
+    "avatarUrl": "https://api.dicebear.com/7.x/avataaars/svg?seed=admin",
+    "role": "admin",
+    "createdAt": {"$date": "2024-01-22T00:00:00Z"},
+    "updatedAt": {"$date": "2024-01-22T00:00:00Z"},
+    "isActive": true,
+    "githubId": "admin123"
+},
+{
+    "_id": {"$oid": "6571283a1f0c4b001f3c1235"},
+    "email": "john@example.com",
+    "username": "johndoe",
+    "password": "$2a$10$XQXxo1kM5KiFr",
+    "avatarUrl": "https://api.dicebear.com/7.x/avataaars/svg?seed=john",
+    "role": "user",
+    "createdAt": {"$date": "2024-01-22T00:00:00Z"},
+    "updatedAt": {"$date": "2024-01-22T00:00:00Z"},
+    "isActive": true,
+    "githubId": "john123"
+},
+{
+    "_id": {"$oid": "6571283a1f0c4b001f3c1236"},
+    "email": "sarah@example.com",
+    "username": "sarahdev",
+    "password": "$2a$10$XQXxo1kM5KiFr",
+    "avatarUrl": "https://api.dicebear.com/7.x/avataaars/svg?seed=sarah",
+    "role": "user",
+    "createdAt": {"$date": "2024-01-22T00:00:00Z"},
+    "updatedAt": {"$date": "2024-01-22T00:00:00Z"},
+    "isActive": true,
+    "githubId": "sarah456"
+},
+{
+    "_id": {"$oid": "6571283a1f0c4b001f3c1237"},
+    "email": "mike@example.com",
+    "username": "mikecoder",
+    "password": "$2a$10$XQXxo1kM5KiFr",
+    "avatarUrl": "https://api.dicebear.com/7.x/avataaars/svg?seed=mike",
+    "role": "user",
+    "createdAt": {"$date": "2024-01-22T00:00:00Z"},
+    "updatedAt": {"$date": "2024-01-22T00:00:00Z"},
+    "isActive": true,
+    "githubId": "mike789"
+},
+{
+    "_id": {"$oid": "6571283a1f0c4b001f3c1238"},
+    "email": "emma@example.com",
+    "username": "emmatech",
+    "password": "$2a$10$XQXxo1kM5KiFr",
+    "avatarUrl": "https://api.dicebear.com/7.x/avataaars/svg?seed=emma",
+    "role": "user",
+    "createdAt": {"$date": "2024-01-22T00:00:00Z"},
+    "updatedAt": {"$date": "2024-01-22T00:00:00Z"},
+    "isActive": true,
+    "githubId": "emma101"
+}
+]

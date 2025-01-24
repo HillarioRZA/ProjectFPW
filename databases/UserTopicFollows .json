@@ -1,0 +1,58 @@
+[
+      {
+        "_id": {"$oid": "6571283a1f0c4b001f3c1260"},
+        "userId": {"$oid": "6571283a1f0c4b001f3c1235"},
+        "topicId": {"$oid": "6571283a1f0c4b001f3c1244"},
+        "createdAt": {"$date": "2024-01-22T00:00:00Z"}
+      },
+      {
+        "_id": {"$oid": "6571283a1f0c4b001f3c1261"},
+        "userId": {"$oid": "6571283a1f0c4b001f3c1235"},
+        "topicId": {"$oid": "6571283a1f0c4b001f3c1248"},
+        "createdAt": {"$date": "2024-01-22T00:00:00Z"}
+      },
+      {
+        "_id": {"$oid": "6571283a1f0c4b001f3c1262"},
+        "userId": {"$oid": "6571283a1f0c4b001f3c1236"},
+        "topicId": {"$oid": "6571283a1f0c4b001f3c1245"},
+        "createdAt": {"$date": "2024-01-22T00:00:00Z"}
+      },
+      {
+        "_id": {"$oid": "6571283a1f0c4b001f3c1263"},
+        "userId": {"$oid": "6571283a1f0c4b001f3c1236"},
+        "topicId": {"$oid": "6571283a1f0c4b001f3c1247"},
+        "createdAt": {"$date": "2024-01-22T00:00:00Z"}
+      },
+      {
+        "_id": {"$oid": "6571283a1f0c4b001f3c1264"},
+        "userId": {"$oid": "6571283a1f0c4b001f3c1237"},
+        "topicId": {"$oid": "6571283a1f0c4b001f3c1246"},
+        "createdAt": {"$date": "2024-01-22T00:00:00Z"}
+      },
+      {
+        "_id": {"$oid": "6571283a1f0c4b001f3c1265"},
+        "userId": {"$oid": "6571283a1f0c4b001f3c1238"},
+        "topicId": {"$oid": "6571283a1f0c4b001f3c1247"},
+        "createdAt": {"$date": "2024-01-22T00:00:00Z"}
+      },
+      {
+        "_id": {"$oid": "6571283a1f0c4b001f3c1266"},
+        "userId": {"$oid": "6571283a1f0c4b001f3c1238"},
+        "topicId": {"$oid": "6571283a1f0c4b001f3c1245"},
+        "createdAt": {"$date": "2024-01-22T00:00:00Z"}
+      },
+      {
+        "_id": {"$oid": "6571283a1f0c4b001f3c1267"},
+        "userId": {"$oid": "6571283a1f0c4b001f3c1237"},
+        "topicId": {"$oid": "6571283a1f0c4b001f3c1244"},
+        "createdAt": {"$date": "2024-01-22T00:00:00Z"}
+      },
+      {
+        "_id": {"$oid": "6571283a1f0c4b001f3c1268"},
+        "userId": {"$oid": "6571283a1f0c4b001f3c1236"},
+        "topicId": {"$oid": "6571283a1f0c4b001f3c1246"},
+        "createdAt": {"$date": "2024-01-22T00:00:00Z"}
+      }
+    ]
+  
+  

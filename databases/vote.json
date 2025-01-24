@@ -1,0 +1,42 @@
+[
+    {
+        "_id": {"$oid": "6571283a1f0c4b001f3c1258"},
+        "userId": {"$oid": "6571283a1f0c4b001f3c1235"},
+        "referenceId": {"$oid": "6571283a1f0c4b001f3c1246"},
+        "referenceType": "topic",
+        "value": 1,
+        "createdAt": {"$date": "2024-01-22T00:00:00Z"}
+      },
+      {
+        "_id": {"$oid": "6571283a1f0c4b001f3c1259"},
+        "userId": {"$oid": "6571283a1f0c4b001f3c1236"},
+        "referenceId": {"$oid": "6571283a1f0c4b001f3c1247"},
+        "referenceType": "topic",
+        "value": 1,
+        "createdAt": {"$date": "2024-01-22T00:00:00Z"}
+      },
+      {
+        "_id": {"$oid": "6571283a1f0c4b001f3c1260"},
+        "userId": {"$oid": "6571283a1f0c4b001f3c1237"},
+        "referenceId": {"$oid": "6571283a1f0c4b001f3c1251"},
+        "referenceType": "comment",
+        "value": 1,
+        "createdAt": {"$date": "2024-01-22T00:00:00Z"}
+      },
+      {
+        "_id": {"$oid": "6571283a1f0c4b001f3c1261"},
+        "userId": {"$oid": "6571283a1f0c4b001f3c1238"},
+        "referenceId": {"$oid": "6571283a1f0c4b001f3c1248"},
+        "referenceType": "topic",
+        "value": -1,
+        "createdAt": {"$date": "2024-01-22T00:00:00Z"}
+      },
+      {
+        "_id": {"$oid": "6571283a1f0c4b001f3c1262"},
+        "userId": {"$oid": "6571283a1f0c4b001f3c1235"},
+        "referenceId": {"$oid": "6571283a1f0c4b001f3c1252"},
+        "referenceType": "comment",
+        "value": 1,
+        "createdAt": {"$date": "2024-01-22T00:00:00Z"}
+      }
+]

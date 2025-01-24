@@ -1,0 +1,42 @@
+[
+    {
+        "_id": {"$oid": "6571283a1f0c4b001f3c1239"},
+        "name": "JavaScript",
+        "description": "Discussions about JavaScript programming",
+        "slug": "javascript",
+        "order": 1,
+        "createdAt": {"$date": "2024-01-22T00:00:00Z"}
+      },
+      {
+        "_id": {"$oid": "6571283a1f0c4b001f3c1240"},
+        "name": "Python",
+        "description": "Python programming language discussions",
+        "slug": "python",
+        "order": 2,
+        "createdAt": {"$date": "2024-01-22T00:00:00Z"}
+      },
+      {
+        "_id": {"$oid": "6571283a1f0c4b001f3c1241"},
+        "name": "Web Development",
+        "description": "Web development topics and discussions",
+        "slug": "web-development",
+        "order": 3,
+        "createdAt": {"$date": "2024-01-22T00:00:00Z"}
+      },
+      {
+        "_id": {"$oid": "6571283a1f0c4b001f3c1242"},
+        "name": "DevOps",
+        "description": "DevOps practices and tools",
+        "slug": "devops",
+        "order": 4,
+        "createdAt": {"$date": "2024-01-22T00:00:00Z"}
+      },
+      {
+        "_id": {"$oid": "6571283a1f0c4b001f3c1243"},
+        "name": "Mobile Development",
+        "description": "Mobile app development discussions",
+        "slug": "mobile-development",
+        "order": 5,
+        "createdAt": {"$date": "2024-01-22T00:00:00Z"}
+      }
+]

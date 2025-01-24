@@ -1,0 +1,62 @@
+[
+    {
+        "_id": {"$oid": "6571283a1f0c4b001f3c1244"},
+        "userId": {"$oid": "6571283a1f0c4b001f3c1235"},
+        "categoryId": {"$oid": "6571283a1f0c4b001f3c1239"},
+        "title": "Best Practices for React Hooks",
+        "content": "What are the current best practices for using React Hooks in 2024?",
+        "viewCount": 150,
+        "isDeleted": false,
+        "createdAt": {"$date": "2024-01-22T00:00:00Z"},
+        "updatedAt": {"$date": "2024-01-22T00:00:00Z"},
+        "tags": ["react", "hooks", "javascript"]
+      },
+      {
+        "_id": {"$oid": "6571283a1f0c4b001f3c1245"},
+        "userId": {"$oid": "6571283a1f0c4b001f3c1236"},
+        "categoryId": {"$oid": "6571283a1f0c4b001f3c1240"},
+        "title": "Python vs JavaScript for Backend",
+        "content": "Comparing Python and JavaScript for backend development in 2024",
+        "viewCount": 200,
+        "isDeleted": false,
+        "createdAt": {"$date": "2024-01-22T00:00:00Z"},
+        "updatedAt": {"$date": "2024-01-22T00:00:00Z"},
+        "tags": ["python", "javascript", "backend"]
+      },
+      {
+        "_id": {"$oid": "6571283a1f0c4b001f3c1246"},
+        "userId": {"$oid": "6571283a1f0c4b001f3c1237"},
+        "categoryId": {"$oid": "6571283a1f0c4b001f3c1241"},
+        "title": "Modern CSS Techniques",
+        "content": "Exploring modern CSS techniques and best practices",
+        "viewCount": 175,
+        "isDeleted": false,
+        "createdAt": {"$date": "2024-01-22T00:00:00Z"},
+        "updatedAt": {"$date": "2024-01-22T00:00:00Z"},
+        "tags": ["css", "web-development"]
+      },
+      {
+        "_id": {"$oid": "6571283a1f0c4b001f3c1247"},
+        "userId": {"$oid": "6571283a1f0c4b001f3c1238"},
+        "categoryId": {"$oid": "6571283a1f0c4b001f3c1242"},
+        "title": "Docker vs Kubernetes",
+        "content": "Comparing Docker and Kubernetes for container orchestration",
+        "viewCount": 300,
+        "isDeleted": false,
+        "createdAt": {"$date": "2024-01-22T00:00:00Z"},
+        "updatedAt": {"$date": "2024-01-22T00:00:00Z"},
+        "tags": ["docker", "kubernetes", "devops"]
+      },
+      {
+        "_id": {"$oid": "6571283a1f0c4b001f3c1248"},
+        "userId": {"$oid": "6571283a1f0c4b001f3c1235"},
+        "categoryId": {"$oid": "6571283a1f0c4b001f3c1243"},
+        "title": "Flutter vs React Native",
+        "content": "Which is better for mobile development in 2024?",
+        "viewCount": 250,
+        "isDeleted": false,
+        "createdAt": {"$date": "2024-01-22T00:00:00Z"},
+        "updatedAt": {"$date": "2024-01-22T00:00:00Z"},
+        "tags": ["flutter", "react-native", "mobile"]
+      }
+]
